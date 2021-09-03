@@ -28,8 +28,8 @@ print("-------------------------------------------------------------------------
 print("\n")
 key="4655b4f97a4148fe84d46ca2bfdee047"
 api = "https://vpnapi.io/api/"+vpn+"?key="+key+""
-r=requests.get(api)
-data=r.json()
+response=requests.get(api)
+data=response.json()
 ip = data["ip"]
 vpn = data["security"]["vpn"]
 proxy = data["security"]["proxy"]
