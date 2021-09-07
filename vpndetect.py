@@ -1,6 +1,6 @@
 from termcolor import colored
 import requests
-import os
+import webbrowser
 
 print(colored('''
 ><<         ><<><<<<<<<  ><<<     ><<  
@@ -50,23 +50,49 @@ is_in_european_union = data["location"]["is_in_european_union"]
 network = data["network"]["network"]
 autonomous_system_number = data["network"]["autonomous_system_number"]
 autonomous_system_organization = data["network"]["autonomous_system_organization"]
-print(colored(f"IP: {ip}","red"))
-print(colored(f"VPN: {vpn}","red"))
-print(colored(f"Proxy: {proxy}","red"))
-print(colored(f"TOR: {tor}","red"))
-print(colored(f"City: {city}","red"))
-print(colored(f"Region: {region}","red"))
-print(colored(f"Country: {country}","red"))
-print(colored(f"Continent: {continent}","red"))
-print(colored(f"Region code: {region_code}","red"))
-print(colored(f"Country code: {country_code}","red"))
-print(colored(f"Continent code: {continent_code}","red"))
-print(colored(f"Latitude: {latitude}","red"))
-print(colored(f"Longitude: {longitude}","red"))
-print(colored(f"Time Zone: {time_zone}","red"))
-print(colored(f"Locale Code: {locale_code}","red"))
-print(colored(f"Metro Code: {metro_code}","red"))
-print(colored(f"Is In European Union: {is_in_european_union}","red"))
-print(colored(f"Network: {network}","red"))
-print(colored(f"Autonomous System Number: {autonomous_system_number}","red"))
-print(colored(f"Autonomous System Organization: {autonomous_system_organization}","red"))
+print(colored(f"[+] IP: {ip}","red"))
+print(colored(f"[+] VPN: {vpn}","red"))
+print(colored(f"[+] Proxy: {proxy}","red"))
+print(colored(f"[+] TOR: {tor}","red"))
+print(colored(f"[+] City: {city}","red"))
+print(colored(f"[+] Region: {region}","red"))
+print(colored(f"[+] Country: {country}","red"))
+print(colored(f"[+] Continent: {continent}","red"))
+print(colored(f"[+] Region code: {region_code}","red"))
+print(colored(f"[+] Country code: {country_code}","red"))
+print(colored(f"[+] Continent code: {continent_code}","red"))
+print(colored(f"[+] Latitude: {latitude}","red"))
+print(colored(f"[+] Longitude: {longitude}","red"))
+print(colored(f"[+] Time Zone: {time_zone}","red"))
+print(colored(f"[+] Locale Code: {locale_code}","red"))
+print(colored(f"[+] Metro Code: {metro_code}","red"))
+print(colored(f"[+] Is In European Union: {is_in_european_union}","red"))
+print(colored(f"[+] Network: {network}","red"))
+print(colored(f"[+] Autonomous System Number: {autonomous_system_number}","red"))
+print(colored(f"[+] Autonomous System Organization: {autonomous_system_organization}","red"))
+print('')
+if data["security"]["vpn"] == True:
+    print(colored("This IP Address Using Vpn","green"))
+else:
+    print(colored("This IP Address Doesn't Using Vpn","green"))
+    print('')
+if data["security"]["proxy"] == True:
+    print(colored("This IP Address Using Proxy","red"))
+else:
+    print(colored("This IP Address Doesn't Using Proxy","red"))
+    print('')
+if data["security"]["tor"] == True:
+    print(colored("This IP Address Using TOR","blue"))
+else:
+    print(colored("This IP Address Doesn't Using TOR","blue"))
+    print('')
+if data["location"]["latitude"] and data["location"]["longitude"]:
+    lats = data["location"]["latitude"]
+    lons = data["location"]["longitude"]
+maps_url = "https://maps.google.com/maps?q=%s,+%s" % (lats, lons)
+openWeb = input(colored("Do You Want To Open GPS location in web broser? (Y/N) ","green"))
+if openWeb.upper() == 'Y':
+    webbrowser.open(maps_url, new=2)
+else:
+    pass
+
